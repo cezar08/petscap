@@ -1,0 +1,27 @@
+<h1>Pessoas</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Nome
+            </th>
+            <th>
+                CPF
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($pessoas as $pessoa) { ?>
+            <tr>
+                <td><?= $pessoa->getId(); ?></td>
+                <td><?= $pessoa->getNome(); ?></td>
+                <td><?= $pessoa->getCpf(); ?></td>
+            </tr>
+        <?php } ?>
+    </tbody>
+
+</table>
