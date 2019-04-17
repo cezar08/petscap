@@ -33,6 +33,28 @@
                     </a>
                 </td>
             </tr>
+            <tr>
+                <td>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Nome Pet</th>
+                                <th>Tipo</th>
+                                <th>Raça</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php foreach ($pessoa->pets as $pet) { ?>
+                            <tr>
+                                <td><?= $pet->nome; ?></td>
+                                <td><?= $pet->tipo; ?></td>
+                                <td><?= $pet->raca; ?></td>
+                            </tr>
+                        <?php } ?>
+                        </tbody>
+                    </table>
+                </td>
+            </tr>
         <?php } ?>
     </tbody>
 

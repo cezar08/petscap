@@ -2,6 +2,7 @@
 
 namespace Application\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -35,5 +36,17 @@ class PessoaEntity extends Entity
      * @var string
      */
     protected $cpf;
+
+    /**
+     * @ORM\OneToMany(targetEntity="PetEntity", mappedBy="dono", cascade={"all"})
+     *
+     * @var ArrayCollection
+     */
+    protected $pets;
+
+    public function __construct()
+    {
+        $this->pets = new ArrayCollection();
+    }
 
 }

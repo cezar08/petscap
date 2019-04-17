@@ -45,7 +45,7 @@ class PetEntity extends Entity
     protected $raca;
 
     /**
-     * @ORM\ManyToOne(targetEntity="PessoaEntity")
+     * @ORM\ManyToOne(targetEntity="PessoaEntity", cascade={"persist"})
      * @ORM\JoinColumn(name="id_pessoa",
      *     referencedColumnName="id")
      *
