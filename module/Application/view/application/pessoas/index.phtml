@@ -1,5 +1,6 @@
 <h1>Pessoas</h1>
 
+<a class="btn btn-primary" href="/pessoas/save">Nova Pessoa</a>
 <table class="table">
     <thead>
         <tr>
@@ -12,14 +13,25 @@
             <th>
                 CPF
             </th>
+            <th>
+                <!-- Ações -->
+            </th>
         </tr>
     </thead>
     <tbody>
         <?php foreach ($pessoas as $pessoa) { ?>
             <tr>
-                <td><?= $pessoa->getId(); ?></td>
-                <td><?= $pessoa->getNome(); ?></td>
-                <td><?= $pessoa->getCpf(); ?></td>
+                <td><?= $pessoa->id; ?></td>
+                <td><?= $pessoa->nome; ?></td>
+                <td><?= $pessoa->cpf; ?></td>
+                <td>
+                    <a href="/pessoas/save/<?= $pessoa->id; ?>">
+                        <i class="glyphicon glyphicon-pencil"></i>
+                    </a>
+                    <a href="/pessoas/delete/<?= $pessoa->id; ?>">
+                        <i class="glyphicon glyphicon-trash"></i>
+                    </a>
+                </td>
             </tr>
         <?php } ?>
     </tbody>

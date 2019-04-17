@@ -1,0 +1,28 @@
+<h1>Salvar Pet</h1>
+
+<form method="post" action="">
+    <label>
+        Nome:
+        <input type="text" name="nome">
+    </label>
+    <label>
+        Tipo:
+        <input type="text" name="tipo">
+    </label>
+    <label>
+        Raça:
+        <input type="text" name="raca">
+    </label>
+    <label>
+        Dono:
+        <select name="dono">
+            <?php foreach ($pessoas as $pessoa) { ?>
+                <option value="<?= $pessoa->id; ?>">
+                    <?= $pessoa->nome; ?>
+                </option>
+            <?php } ?>
+        </select>
+    </label>
+
+    <input class="btn btn-primary" type="submit" value="Salvar">
+</form>

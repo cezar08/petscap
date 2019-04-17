@@ -5,14 +5,15 @@ namespace Application\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Class PessoaEntity
+ * Class PetEntity
  * @package Application\Entity
  *
  * @ORM\Entity
- * @ORM\Table(name="pessoa")
+ * @ORM\Table(name="pet")
  */
-class PessoaEntity extends Entity
+class PetEntity extends Entity
 {
+
     /**
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -34,6 +35,22 @@ class PessoaEntity extends Entity
      *
      * @var string
      */
-    protected $cpf;
+    protected $tipo;
+
+    /**
+     * @ORM\Column(type="string")
+     *
+     * @var string
+     */
+    protected $raca;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="PessoaEntity")
+     * @ORM\JoinColumn(name="id_pessoa",
+     *     referencedColumnName="id")
+     *
+     * @var PessoaEntity
+     */
+    protected $dono;
 
 }

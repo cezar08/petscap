@@ -29,24 +29,33 @@ class PessoasController extends AbstractActionController
     public function saveAction()
     {
         $request = $this->getRequest();
+        $id = (int) $this->params('id', 0);
 
         if ($request->isPost()) {
             $values = $request->getPost()
                 ->toArray();
+            $values['id'] = $id;
             $this->pessoaService
                 ->salvarPessoa($values);
 
+            return $this->redirect()->toUrl("/pessoas");
         }
 
+        $pessoa = null;
 
-        return new ViewModel();
+        if ($id > 0)
+            $pessoa = $this->pessoaService->get($id);
+
+        return new ViewModel(['pessoa' => $pessoa]);
     }
 
     public function deleteAction()
     {
+        $id = (int) $this->params('id');
+        $this->pessoaService->delete($id);
 
+        return $this->redirect()->toUrl("/pessoas");
     }
-
 }
 
 

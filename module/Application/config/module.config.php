@@ -8,7 +8,9 @@
 namespace Application;
 
 use Application\Controller\PessoasController;
+use Application\Controller\PetsController;
 use Application\Service\PessoaService;
+use Application\Service\PetService;
 use Zend\Router\Http\Literal;
 use Zend\Router\Http\Segment;
 use Zend\ServiceManager\Factory\InvokableFactory;
@@ -39,9 +41,19 @@ return [
             'pessoas' => [
                 'type' => Segment::class,
                 'options' => [
-                    'route' => '/pessoas[/:action]',
+                    'route' => '/pessoas[/:action][/:id]',
                     'defaults' => [
                         'controller' => Controller\PessoasController::class,
+                        'action' => 'index'
+                    ]
+                ]
+            ],
+            'pets' => [
+                'type' => Segment::class,
+                'options' => [
+                    'route' => '/pets[/:action][/:id]',
+                    'defaults' => [
+                        'controller' => Controller\PetsController::class,
                         'action' => 'index'
                     ]
                 ]
@@ -55,6 +67,12 @@ return [
                 $service = $serviceManager->get('PessoaService');
 
                 return new PessoasController($service);
+            },
+            Controller\PetsController::class => function ($serviceManager) {
+                $servicePet = $serviceManager->get('PetService');
+                $servicePessoa = $serviceManager->get('PessoaService');
+
+                return new PetsController($servicePet, $servicePessoa);
             }
         ],
     ],
@@ -64,6 +82,11 @@ return [
             $db = $serviceManager->get('Doctrine\ORM\EntityManager');
 
             return new PessoaService($db);
+          },
+          'PetService' => function ($serviceManager) {
+            $db = $serviceManager->get('Doctrine\ORM\EntityManager');
+
+            return new PetService($db);
           }
       ]
     ],
